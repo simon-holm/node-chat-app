@@ -4,7 +4,14 @@ import {Route, Switch} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import {Footer} from '../components/Footer';
 
+import { newMessage } from '../api/api';
+
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        newMessage((message) => console.log(message));
+    }
 	render() {
 		return (
 			<div>

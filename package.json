@@ -10,8 +10,9 @@
     "nodemon": "set NODE_ENV=development && nodemon",
     "clean": "rimraf dist",
     "build": "set NODE_ENV=production && npm run clean && webpack",
-    "serve": "webpack-dev-server",
-    "dev": "start cmd.exe /K webpack -w && start cmd.exe /K npm run nodemon"
+    "serve": "set NODE_ENV=development && webpack-dev-server",
+    "watch": "set NODE_ENV=development && webpack -w",
+    "dev": "start cmd.exe /K npm run watch && start cmd.exe /K npm run nodemon"
   },
   "engines": {
     "node": "8.0.0"
