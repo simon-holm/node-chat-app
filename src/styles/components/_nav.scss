@@ -1,0 +1,28 @@
+//#26a69a
+
+@import '../variables';
+
+.nav-wrapper {
+	background-color: rgba(212, 212, 212, 0.95);
+	//background-color: #26a69a;
+	.brand-logo {
+		padding: 5px 0 0 15px!important;
+		img {
+			max-width: 120px;
+			width: auto;
+		}
+	}
+	ul {
+		li {
+			.active {
+				background-color: rgba(0, 0, 0, 0.05)!important;
+				//background-color: rgb(147, 205, 161)!important;
+				color: white;
+				}
+			a {
+				color: #717171;
+				
+			}
+		}
+	}
+}
