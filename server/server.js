@@ -17,20 +17,40 @@ io.on('connection', (socket) => {
     nrOfCurrentUsers += 1;
     console.log(`New user connected! Nr of current users: ${nrOfCurrentUsers}`)
 
-    socket.emit('newMessage', { 
-        from: 'John',
-        text:'See ya',
-        createdAt: new Date().toDateString()
+    // user join socket.emit from Admin 'Welcome to the chat app'
+    socket.emit('newMessage', {
+        from: 'Admin',
+        text: 'Welcome to the chat!',
+        createdAt: new Date().getTime()
     });
 
-    socket.on('createMessage', (message) => {
-        console.log('createMessage', message)
+    // socket.broadcast.emit from Adming text = New user joined.
+    socket.broadcast.emit('newMessage', {
+        from: 'Admin',
+        text: 'New user has joined the chat!',
+        createdAt: new Date().getTime()
+    });
+
+    socket.on('createMessage', ({ from, text }) => {
+        console.log('createMessage', {from, text})
+        io.emit('newMessage', {
+            from, 
+            text,
+            createdAt: new Date().getTime()
+        });
     });
 
     socket.on('disconnect', () => {
         nrOfCurrentUsers -= 1;
-        console.log(`User disconnected! Nr of current users: ${nrOfCurrentUsers}`)
-    })
+        console.log(`User disconnected! Nr of current users: ${nrOfCurrentUsers}`);
+
+        // notify other users on leave
+        io.emit('newMessage', {
+            from: 'Admin',
+            text: 'User left the chat',
+            createdAt: new Date().getTime()
+        });
+    });
 });
 
 
