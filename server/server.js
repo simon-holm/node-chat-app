@@ -17,13 +17,14 @@ io.on('connection', (socket) => {
     nrOfCurrentUsers += 1;
     console.log(`New user connected! Nr of current users: ${nrOfCurrentUsers}`)
 
-    socket.emit('newEmail', { 
-        message: 'Hello',
-        number: 10 
+    socket.emit('newMessage', { 
+        from: 'John',
+        text:'See ya',
+        createdAt: new Date().toDateString()
     });
 
-    socket.on('createEmail', (data) => {
-        console.log('createEmail', data);
+    socket.on('createMessage', (message) => {
+        console.log('createMessage', message)
     });
 
     socket.on('disconnect', () => {
