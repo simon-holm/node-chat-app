@@ -31,7 +31,6 @@
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
     "sass-loader": "^6.0.6",
-    "socket.io": "^1.4.8",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
@@ -42,6 +41,7 @@
     "react-dom": "^15.6.1",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "socket.io-client": "^2.0.3"
+    "socket.io-client": "^2.0.3",
+    "socket.io": "^1.4.8"
   }
 }
