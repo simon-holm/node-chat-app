@@ -9,6 +9,8 @@ var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 
+const { generateMessage } = require('./utils/message');
+
 app.use(express.static(publicPath));
 
 let nrOfCurrentUsers = 0;
@@ -18,26 +20,14 @@ io.on('connection', (socket) => {
     console.log(`New user connected! Nr of current users: ${nrOfCurrentUsers}`)
 
     // user join socket.emit from Admin 'Welcome to the chat app'
-    socket.emit('newMessage', {
-        from: 'Admin',
-        text: 'Welcome to the chat!',
-        createdAt: new Date().getTime()
-    });
+    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat!'));
 
     // socket.broadcast.emit from Adming text = New user joined.
-    socket.broadcast.emit('newMessage', {
-        from: 'Admin',
-        text: 'New user has joined the chat!',
-        createdAt: new Date().getTime()
-    });
+    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined the chat'));
 
     socket.on('createMessage', ({ from, text }) => {
         console.log('createMessage', {from, text})
-        io.emit('newMessage', {
-            from, 
-            text,
-            createdAt: new Date().getTime()
-        });
+        io.emit('newMessage', generateMessage(from, text));
     });
 
     socket.on('disconnect', () => {
@@ -45,11 +35,7 @@ io.on('connection', (socket) => {
         console.log(`User disconnected! Nr of current users: ${nrOfCurrentUsers}`);
 
         // notify other users on leave
-        io.emit('newMessage', {
-            from: 'Admin',
-            text: 'User left the chat',
-            createdAt: new Date().getTime()
-        });
+        io.emit('newMessage', generateMessage('Admin', 'User left the chat'));
     });
 });
 
