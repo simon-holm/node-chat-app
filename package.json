@@ -12,7 +12,7 @@
     "build": "set NODE_ENV=production && npm run clean && webpack",
     "serve": "set NODE_ENV=development && webpack-dev-server",
     "watch": "set NODE_ENV=development && webpack -w",
-    "dev": "start cmd.exe /K npm run watch && start cmd.exe /K npm run nodemon"
+    "dev": "start cmd.exe /K npm run serve && start cmd.exe /K npm run nodemon"
   },
   "engines": {
     "node": "8.0.0"
