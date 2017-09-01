@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     state = { menuActive: false }
@@ -35,10 +36,11 @@ class Navbar extends Component {
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-link" href="#">Test</a>
                             <div className="navbar-dropdown">
-                                <a className="navbar-item" href="#">Example 1</a>
-                                <a className="navbar-item" href="#">Example 2</a>
-                                <a className="navbar-item" href="#">Example 3</a>
+                                <Link className="navbar-item" to={{ pathname: '/'}}>Start</Link>
+                                <Link className="navbar-item" to={{ pathname: '/edit'}}>Edit</Link>
+                                
                                 <hr className="navbar-divider"/>
+
                                 <div className="navbar-item">
                                     <div>
                                     <p className="is-size-6-desktop">

@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 
 import Navbar from '../components/Navbar';
 import {Footer} from '../components/Footer';
+import StartComponent from '../components/Start';
 
 import { newMessage } from '../api/api';
 
@@ -31,6 +32,7 @@ class App extends Component {
     }
 
 	render() {
+        const { stage2 } = this.state;
 		return (
 			<div>
                 <Navbar/>
@@ -40,13 +42,11 @@ class App extends Component {
                             exact
                             path="/"
                             render={() => (
-                                <div>
-                                    <h1>HEJ HEJ</h1>
-                                    <button onClick={ () => this.onTest() }>ES7</button>
-                                    <p>Using Stage-2: {this.state.stage2 ? 'Yes': 'No'}</p>
-                                    <button onClick={ () => this.testAsync() }>Async Await 2sek alert</button>
-                                </div>
-                                
+                                <StartComponent 
+                                    stage2={stage2} 
+                                    onTest={this.onTest} 
+                                    testAsync={this.testAsync} 
+                                />
                             )}
                         />
                         <Route
