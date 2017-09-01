@@ -5,7 +5,11 @@
     
     border-radius: 3px;
     background-color: rgba(42, 42, 42, 0.75);
-    color: #09CB09;
+    color: #0BE70B;
+    -webkit-box-shadow: 0px 16px 89px -14px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 16px 89px -14px rgba(0,0,0,0.75);
+    box-shadow: 0px 16px 89px -14px rgba(0,0,0,0.75);
+    cursor: default!important;
     .terminal-top-bar {
         background-color: white;
         border-top-left-radius: 3px;
@@ -42,5 +46,11 @@
                 align-items: center;
             }
         }
+    }
+
+    .chat-screen {
+        padding-left: 5px;
+        padding-right: 5px;
+        font-family: Consolas;
     }
 }

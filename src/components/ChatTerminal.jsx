@@ -66,7 +66,7 @@ class ChatTerminal extends Component {
                             </div>
                         </div>
                     </strong>
-                    <div>Chat content</div>
+                    <div className="chat-screen">Chat content</div>
                 </div>
             </Draggable>
         );
