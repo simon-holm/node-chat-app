@@ -10,7 +10,7 @@ module.exports = {
   watch: true,
   cache: true,
   entry: {
-      bundle: './src/index.jsx',
+      bundle: ['babel-polyfill', './src/index.jsx'],
       vendor: VENDOR_LIBS
   },
   output: {

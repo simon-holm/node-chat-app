@@ -7,11 +7,29 @@ import {Footer} from '../components/Footer';
 import { newMessage } from '../api/api';
 
 class App extends Component {
+    state = { stage2: true }
+
     constructor(props) {
         super(props);
-
         newMessage((message) => console.log(message));
     }
+    
+    onTest = () => alert('ES7');
+
+    delayStuff = (stuff) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(stuff);
+            }, 2000)
+        })
+    }
+
+    testAsync = async () => {
+        let first = await this.delayStuff(20);
+        let second = await this.delayStuff(30);
+        alert(`${await first} + ${ await second} = ${await first + await second}`)
+    }
+
 	render() {
 		return (
 			<div>
@@ -22,7 +40,13 @@ class App extends Component {
                             exact
                             path="/"
                             render={() => (
-                                <h1>HEJ HEJ</h1>
+                                <div>
+                                    <h1>HEJ HEJ</h1>
+                                    <button onClick={ () => this.onTest() }>ES7</button>
+                                    <p>Using Stage-2: {this.state.stage2 ? 'Yes': 'No'}</p>
+                                    <button onClick={ () => this.testAsync() }>Async Await 2sek alert</button>
+                                </div>
+                                
                             )}
                         />
                         <Route
