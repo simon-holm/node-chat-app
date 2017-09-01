@@ -27,9 +27,10 @@ io.on('connection', (socket) => {
     // socket.broadcast.emit from Adming text = New user joined.
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined the chat'));
 
-    socket.on('createMessage', ({ from, text }) => {
+    socket.on('createMessage', ({ from, text }, callback) => {
         console.log('createMessage', {from, text})
         io.emit('newMessage', generateMessage(from, text));
+        callback('This is from the server');
     });
 
     socket.on('disconnect', () => {

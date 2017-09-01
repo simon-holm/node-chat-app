@@ -15,4 +15,11 @@ function newMessage(cb) {
     })
 }
 
+socket.emit('createMessage', {
+    from: 'Frankie',
+    text: 'Hello this is Frankie'
+}, (data) => {
+    console.log('Message Sent', data)
+});
+
 export { newMessage };

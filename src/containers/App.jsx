@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import {Footer} from '../components/Footer';
 import StartComponent from '../components/Start';
+import ChatTerminal from '../components/ChatTerminal';
 
 import { newMessage } from '../api/api';
 
@@ -36,17 +37,20 @@ class App extends Component {
 		return (
 			<div>
                 <Navbar/>
-				<div className="center-align" style={{ minHeight: 'calc(100vh - 52px)'}}>
+				<div className="center-align app-background" style={{ minHeight: 'calc(100vh - 52px)'}}>
                     <Switch>
                         <Route
                             exact
                             path="/"
                             render={() => (
-                                <StartComponent 
-                                    stage2={stage2} 
-                                    onTest={this.onTest} 
-                                    testAsync={this.testAsync} 
-                                />
+                                <div>
+                                    <StartComponent 
+                                        stage2={stage2} 
+                                        onTest={this.onTest} 
+                                        testAsync={this.testAsync} 
+                                    />
+                                    <ChatTerminal chatName={'#Epic Chat'}/>
+                                </div>
                             )}
                         />
                         <Route

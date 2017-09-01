@@ -1,4 +1,5 @@
 @import 'components/nav';
+@import 'components/chatterminal';
 
 html {
     height: 100%;
@@ -6,4 +7,10 @@ html {
 }
 body {
 	height: 100%;
+}
+
+.app-background {
+    background: url("/src/assets/images/mac-screen.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
