@@ -1,1 +1,8 @@
-/src
+/src/index.html
+/src/index.jsx
+/src/main.scss
+/src/api
+/src/components
+/src/containers
+/src/helpers
+/src/styles
