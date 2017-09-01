@@ -8,7 +8,9 @@ class Navbar extends Component {
             <nav className="navbar">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="http://bulma.io">
-                        <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" />
+                        <span className="icon" style={{color: '#333'}}>
+                            <i className="fa fa-apple"></i>
+                        </span>
                     </a>
                 
 
@@ -34,7 +36,7 @@ class Navbar extends Component {
                 <div id="navMenubd-example" className={this.state.menuActive ? "navbar-menu is-active" : "navbar-menu"}>
                     <div className="navbar-start">
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link" href="#">Test</a>
+                            <a className="navbar-item" href="#"><strong>Finder</strong></a>
                             <div className="navbar-dropdown">
                                 <Link className="navbar-item" to={{ pathname: '/'}}>Start</Link>
                                 <Link className="navbar-item" to={{ pathname: '/edit'}}>Edit</Link>
@@ -57,7 +59,7 @@ class Navbar extends Component {
                         </div>
 
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link" href="#">Test 2</a>
+                            <a className="navbar-item" href="#">File</a>
                             <div className="navbar-dropdown">
                                 <a className="navbar-item" href="#">Something 1</a>
                                 <a className="navbar-item" href="#">Something 2</a>
@@ -85,6 +87,10 @@ class Navbar extends Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="navbar-item has-dropdown is-hoverable">
+                            <a className="navbar-item" href="#">Edit</a>
                         </div>
                     </div>
                     

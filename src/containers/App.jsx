@@ -37,7 +37,7 @@ class App extends Component {
 		return (
 			<div>
                 <Navbar/>
-				<div className="center-align app-background" style={{ minHeight: 'calc(100vh - 52px)'}}>
+				<div className="center-align app-background" style={{ minHeight: 'calc(100vh - 30px)'}}>
                     <Switch>
                         <Route
                             exact
