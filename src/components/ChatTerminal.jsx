@@ -29,20 +29,24 @@ class ChatTerminal extends Component {
         let nrOfMessages = this.state.messages.length;
         if (this.state.topSpace >= 1 && nrOfMessages >= 1) {
             this.setState({ topSpace: 320 - (19 * (nrOfMessages - 1))})
-            this.scrollToBottom();
         }
+        this.scrollToBottom();
     }
 
     componentDidMount() {
         refresher = setInterval(() => {
             console.log('forceUpdate')
             this.forceUpdate()
-        }, 4000)
+        }, 5000)
     }
 
     componentWillUnmount() {
         clearInterval(refresher)
         console.log('Autorefresher cleared')
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
     }
 
     handleDrag(e, ui) {
