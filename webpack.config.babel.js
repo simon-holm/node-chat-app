@@ -48,7 +48,19 @@ module.exports = {
           {
               use: ['style-loader', 'css-loader'],
               test: /\.css$/
-          }
+          },
+          {
+                test: /\.(png|svg|jpg|gif|ico)$/,
+                use: [
+                    'file-loader'
+                ]
+          },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+                'file-loader'
+            ]
+        }
       ]
   },
   plugins: [

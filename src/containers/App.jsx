@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import {Footer} from '../components/Footer';
 import StartComponent from '../components/Start';
 import ChatTerminal from '../components/ChatTerminal';
+import MacBar from '../components/MacBar';
 
 import { newMessage } from '../api/api';
 
@@ -22,14 +23,14 @@ class App extends Component {
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve(stuff);
-            }, 2000)
+            }, 1000)
         })
     }
 
     testAsync = async () => {
         let first = await this.delayStuff(20);
         let second = await this.delayStuff(30);
-        alert(`${await first} + ${ await second} = ${await first + await second}`)
+        alert(`${first} + ${second} = ${first + second}`)
     }
 
 	render() {
@@ -60,7 +61,9 @@ class App extends Component {
                             )}
                         />
                     </Switch>
+                    
                 </div>
+                <MacBar />
                 <Footer/>
 			</div>
 		);
