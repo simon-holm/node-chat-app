@@ -6,8 +6,12 @@ import {Footer} from '../components/Footer';
 import StartComponent from '../components/Start';
 import ChatTerminal from '../components/ChatTerminal';
 import MacBar from '../components/MacBar';
+import DesktopIcon from '../components/DesktopIcon';
 
 import { newMessage } from '../api/api';
+
+// Icons imported for webpack
+import MacHd from '../assets/icons/mac-hd.png';
 
 class App extends Component {
     state = { 
@@ -66,7 +70,10 @@ class App extends Component {
                             )}
                         />
                     </Switch>
-                    
+                    <DesktopIcon 
+                        callBack={() => alert('this.props.callBack Doubleclick!')}
+                        icon={MacHd}
+                    />
                 </div>
                 <MacBar />
 			</div>

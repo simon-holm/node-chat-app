@@ -30,9 +30,15 @@
         }
 
         img {
-            height: 80px;
+            height: 70px;
             width: auto;
             margin-bottom: 25px;
+            user-drag: none; 
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
 
         .left-group {

@@ -1,0 +1,19 @@
+
+
+.desktop-icon-component {
+    height: 110px;
+    width: 110px;
+
+    img {
+        user-drag: none; 
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        transition: ease-in-out 200ms;
+        &:active {
+            transform: scale(1.05);
+        }
+    }
+}
