@@ -20487,7 +20487,7 @@ module.exports = __webpack_require__.p + "f4026bb75e48f8f66d5676af9624bc01.png";
 /* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "b7d1498695d58379bb988ec67c7cfe6f.ico";
+module.exports = __webpack_require__.p + "37fb70f3e51adb879a4a8129caec4f71.png";
 
 /***/ }),
 /* 588 */

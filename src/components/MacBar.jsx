@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Icons imported for webpack
 import Spotify from '../assets/icons/spotify.png';
 import Finder from '../assets/icons/finder.png';
-import Chrome from '../assets/icons/chrome.ico';
+import Chrome from '../assets/icons/chrome.png';
 import Trash from '../assets/icons/trash.png';
 
 class MacBar extends Component {
