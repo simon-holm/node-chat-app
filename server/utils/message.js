@@ -1,5 +1,6 @@
-const generateMessage = (from, text) => {
+const generateMessage = (chatName, from, text) => {
     return {
+        chatName,
         from,
         text,
         createdAt: new Date().getTime()

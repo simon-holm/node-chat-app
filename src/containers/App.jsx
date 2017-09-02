@@ -10,31 +10,38 @@ import MacBar from '../components/MacBar';
 import { newMessage } from '../api/api';
 
 class App extends Component {
-    state = { stage2: true }
+    state = { 
+        sessions: [
+            {
+                chatName: '#Epic Chat',
+                messages: [
+                    {
+                        from: 'Admin',
+                        text: 'Chat initialized',
+                        createdAt: new Date().getTime()
+                    }
+                ]
+            }
+        ] 
+    }
 
     constructor(props) {
         super(props);
-        newMessage((message) => console.log(message));
+        newMessage((message) => this.updateChatSession(message));
     }
     
-    onTest = () => alert('ES7');
-
-    delayStuff = (stuff) => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(stuff);
-            }, 1000)
+    updateChatSession = (message) => {
+        let newSessions = [...this.state.sessions];
+        newSessions.map(session => {
+            if (session.chatName === message.chatName) {
+                session.messages.push({ from: message.from, text: message.text, createdAt: message.createdAt })
+            }
         })
-    }
-
-    testAsync = async () => {
-        let first = await this.delayStuff(20);
-        let second = await this.delayStuff(30);
-        alert(`${first} + ${second} = ${first + second}`)
+        this.setState({ sessions: newSessions })
     }
 
 	render() {
-        const { stage2 } = this.state;
+        const { sessions } = this.state;
 		return (
 			<div>
                 <Navbar/>
@@ -45,12 +52,10 @@ class App extends Component {
                             path="/"
                             render={() => (
                                 <div>
-                                    <StartComponent 
-                                        stage2={stage2} 
-                                        onTest={this.onTest} 
-                                        testAsync={this.testAsync} 
-                                    />
-                                    <ChatTerminal chatName={'#Epic Chat'}/>
+                                    <StartComponent />
+                                    {sessions.map(session => {
+                                        return <ChatTerminal key={session.chatName} chatName={session.chatName} messages={session.messages}/>
+                                    })}
                                 </div>
                             )}
                         />

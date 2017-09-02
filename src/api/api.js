@@ -12,7 +12,18 @@ socket.on('disconnect', function () {
 function newMessage(cb) {
     socket.on('newMessage', function(message) {
         console.log('newMessage received', message);
+        cb(message);
     })
+}
+
+function sendMessage({ chatName, from, text }, cb) {
+    socket.emit('createMessage', {
+        chatName,
+        from,
+        text
+    }, (message) => {
+        console.log('Message SENT', message)
+    });
 }
 
 socket.emit('createMessage', {
@@ -22,4 +33,4 @@ socket.emit('createMessage', {
     console.log('Message Sent', data)
 });
 
-export { newMessage };
+export { newMessage, sendMessage };
