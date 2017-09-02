@@ -69,7 +69,6 @@ class App extends Component {
                     
                 </div>
                 <MacBar />
-                <Footer/>
 			</div>
 		);
 	}

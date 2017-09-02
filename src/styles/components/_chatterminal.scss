@@ -32,6 +32,7 @@
                 align-items: center;
                 .delete {
                     background-color: rgba(247, 6, 6, 0.56);
+                    transform: scale(0.8)
                 }
             }
             .center-group {
@@ -83,6 +84,7 @@
                 font-size: 12px;
             }
             input {
+                cursor: default;
                 width: 95%;
                 border: none;
                 background-color: transparent;

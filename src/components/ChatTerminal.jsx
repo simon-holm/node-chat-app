@@ -35,14 +35,12 @@ class ChatTerminal extends Component {
 
     componentDidMount() {
         refresher = setInterval(() => {
-            console.log('forceUpdate')
             this.forceUpdate()
         }, 5000)
     }
 
     componentWillUnmount() {
         clearInterval(refresher)
-        console.log('Autorefresher cleared')
     }
 
     componentDidUpdate() {
@@ -99,6 +97,10 @@ class ChatTerminal extends Component {
         this.bottomChat.scrollTop = this.bottomChat.scrollHeight;
     }
 
+    focusInput = () => {
+        this.chatInput.focus();
+    }
+
     render() {
         const dragHandlers = {
             onStart: this.onStart,
@@ -106,7 +108,7 @@ class ChatTerminal extends Component {
         };
         const { chatName } = this.props;
         return (
-            <Draggable handle="strong" {...dragHandlers} defaultPosition={{x: randomPosition(10, 800) , y: randomPosition(60, 300)}}>
+            <Draggable handle="strong" {...dragHandlers} defaultPosition={{x: randomPosition(10, 800) , y: randomPosition(20, 200)}}>
                 <div className="chat-terminal-component">
                     <strong>
                         <div className="terminal-top-bar">
@@ -126,7 +128,7 @@ class ChatTerminal extends Component {
                             </div>
                         </div>
                     </strong>
-                    <div className="chat-screen">
+                    <div className="chat-screen" onClick={this.focusInput}>
                         <div className="chat-content" ref={(el) => { this.bottomChat = el; }}>
                             <div style={{ marginTop: this.state.topSpace }}></div>
                             {this.renderMessages()}
@@ -137,7 +139,7 @@ class ChatTerminal extends Component {
                                     <i className="fa fa-chevron-right"></i>
                                 </span>
                             </label>
-                            <input id="message" name="message" type="text" value={this.state.value} autoComplete="off" onChange={this.onChangeInput}/>
+                            <input ref={input => { this.chatInput = input }} id="message" name="message" type="text" value={this.state.value} autoComplete="off" onChange={this.onChangeInput}/>
                         </form>
                     </div>
                 </div>
