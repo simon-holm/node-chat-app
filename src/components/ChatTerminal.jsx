@@ -87,7 +87,8 @@ class ChatTerminal extends Component {
             const { from, text, createdAt } = message;
             return (
                 <div key={index}>
-                    {`${from}: ${text} (${dateParser.timeSince(createdAt)})`}
+                    {from == '$' ? text : 
+                    `${from}: ${text} (${dateParser.timeSince(createdAt)})` }
                 </div>
             )
         })
