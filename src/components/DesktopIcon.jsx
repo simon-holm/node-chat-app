@@ -18,7 +18,7 @@ class DesktopIcon extends Component {
         clicked: 0
     };
 
-    handleDrag(e, ui) {
+    handleDrag = (e, ui) => {
         const {x, y} = this.state.deltaPosition;
         this.setState({
             deltaPosition: {
@@ -52,17 +52,17 @@ class DesktopIcon extends Component {
         }
     }
 
-
     render() {
         const dragHandlers = {
             onStart: this.onStart,
             onStop: this.onStop
         };
         return (
-            <Draggable handle=".handle" {...dragHandlers} defaultPosition={{x: randomPosition(10, 800) , y: randomPosition(20, 100)}}>
+            <Draggable handle=".handle" {...dragHandlers} defaultPosition={this.props.isRoot ? {x: randomPosition(10, 1500) , y: randomPosition(-910, -900)} : {x: randomPosition(10, 1500) , y: randomPosition(-110, -100)} }> 
                 <div className="desktop-icon-component">
                     <div className="handle" onClick={this.onIconClick}>
                         <img src={this.props.icon} />
+                        <p>{this.props.title}</p>
                     </div>
                 </div>
             </Draggable>

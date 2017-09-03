@@ -47,7 +47,7 @@ class ChatTerminal extends Component {
         this.scrollToBottom();
     }
 
-    handleDrag(e, ui) {
+    handleDrag = (e, ui) => {
         const {x, y} = this.state.deltaPosition;
         this.setState({
             deltaPosition: {
@@ -72,7 +72,7 @@ class ChatTerminal extends Component {
     onSubmitInput = (event) => {
         event.preventDefault();
         if (this.state.value != "") {
-            sendMessage({ chatName: this.props.chatName, from: 'Test', text: this.state.value }, () => console.log('sent'))
+            sendMessage({ chatName: this.props.chatName, from: this.props.username, text: this.state.value }, () => console.log('sent'))
             this.setState({ value: "" })
         }
         
@@ -108,7 +108,7 @@ class ChatTerminal extends Component {
         };
         const { chatName } = this.props;
         return (
-            <Draggable handle="strong" {...dragHandlers} defaultPosition={{x: randomPosition(10, 800) , y: randomPosition(20, 200)}}>
+            <Draggable handle="strong" {...dragHandlers} defaultPosition={{x: randomPosition(45, 800) , y: randomPosition(25, 200)}}>
                 <div className="chat-terminal-component">
                     <strong>
                         <div className="terminal-top-bar">

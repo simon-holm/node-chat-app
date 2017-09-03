@@ -12,6 +12,7 @@ import { newMessage } from '../api/api';
 
 // Icons imported for webpack
 import MacHd from '../assets/icons/mac-hd.png';
+import TerminalIcon from '../assets/icons/terminal-icon.png';
 
 class App extends Component {
     state = { 
@@ -26,7 +27,8 @@ class App extends Component {
                     }
                 ]
             }
-        ] 
+        ],
+        username: 'Anonymous' 
     }
 
     constructor(props) {
@@ -44,6 +46,8 @@ class App extends Component {
         this.setState({ sessions: newSessions })
     }
 
+    updateUserName = username => this.setState({ username })
+
 	render() {
         const { sessions } = this.state;
 		return (
@@ -58,7 +62,19 @@ class App extends Component {
                                 <div>
                                     <StartComponent />
                                     {sessions.map(session => {
-                                        return <ChatTerminal key={session.chatName} chatName={session.chatName} messages={session.messages}/>
+                                        return (
+                                            <div>
+                                                <ChatTerminal key={`${session.chatName}-window`} 
+                                                    username={this.state.username} chatName={session.chatName} 
+                                                    messages={session.messages}
+                                                />
+                                                <DesktopIcon key={`${session.chatName}-icon`} callBack={() => alert('clicked Chat Terminal')} 
+                                                    icon={TerminalIcon}
+                                                    title={session.chatName}
+                                                    isRoot={false}
+                                                />
+                                            </div>
+                                        )
                                     })}
                                 </div>
                             )}
@@ -66,15 +82,18 @@ class App extends Component {
                         <Route
                             path="/edit"
                             render={() => (
-                                <h1>EDIT</h1>
+                                <div>
+                                </div>
                             )}
                         />
                     </Switch>
-                    <DesktopIcon 
+                </div>
+                <DesktopIcon 
                         callBack={() => alert('this.props.callBack Doubleclick!')}
                         icon={MacHd}
+                        title={'C: HDD'}
+                        isRoot={true}
                     />
-                </div>
                 <MacBar />
 			</div>
 		);

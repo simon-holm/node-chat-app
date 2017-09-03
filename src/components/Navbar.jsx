@@ -38,8 +38,8 @@ class Navbar extends Component {
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-item" href="#"><strong>Finder</strong></a>
                             <div className="navbar-dropdown">
-                                <Link className="navbar-item" to={{ pathname: '/'}}>Start</Link>
-                                <Link className="navbar-item" to={{ pathname: '/edit'}}>Edit</Link>
+                                <Link className="navbar-item" to={{ pathname: '/'}}>Chat</Link>
+                                <Link className="navbar-item" to={{ pathname: '/edit'}}>Another program</Link>
                                 
                                 <hr className="navbar-divider"/>
 
@@ -61,9 +61,7 @@ class Navbar extends Component {
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-item" href="#">File</a>
                             <div className="navbar-dropdown">
-                                <a className="navbar-item" href="#">Something 1</a>
-                                <a className="navbar-item" href="#">Something 2</a>
-                                <a className="navbar-item" href="#">Something 3</a>
+                                <a className="navbar-item">New Chat</a>
                                 <hr className="navbar-divider"/>
                                 <div className="navbar-item">
                                     <div className="navbar-content">
@@ -90,7 +88,10 @@ class Navbar extends Component {
                         </div>
 
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-item" href="#">Edit</a>
+                            <a className="navbar-item" href="#">Settings</a>
+                            <div className="navbar-dropdown">
+                                <a className="navbar-item" href="#">Set Username</a>
+                            </div>
                         </div>
                     </div>
                     
