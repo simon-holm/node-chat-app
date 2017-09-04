@@ -15,6 +15,12 @@ function newMessage(cb) {
     })
 }
 
+function newLocationMessage(cb) {
+    socket.on('newLocationMessage', function(message) {
+        cb(message);
+    })
+}
+
 function sendMessage({ chatName, from, text }, cb) {
     socket.emit('createMessage', {
         chatName,
@@ -25,4 +31,16 @@ function sendMessage({ chatName, from, text }, cb) {
     });
 }
 
-export { newMessage, sendMessage };
+function botBroadcastLocation(chatName, user, pos, cb) {
+    console.log(pos)
+    socket.emit('createLocationMessage', {
+        chatName,
+        user,
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude
+    }), () => {
+        console.log('Broadcasting Location')
+    }
+}
+
+export { newMessage, newLocationMessage, sendMessage, botBroadcastLocation };

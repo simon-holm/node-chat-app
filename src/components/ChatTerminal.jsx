@@ -71,10 +71,13 @@ class ChatTerminal extends Component {
 
     onSubmitInput = (event) => {
         event.preventDefault();
-        if (this.state.value != "") {
+        if (this.state.value == 'location') {
+            this.props.userLocation(this.props.chatName, this.props.username);
+        } else if (this.state.value != "") {
             sendMessage({ chatName: this.props.chatName, from: this.props.username, text: this.state.value }, () => console.log('sent'))
-            this.setState({ value: "" })
+            
         }
+        this.setState({ value: "" })
         
     }
     
@@ -84,13 +87,23 @@ class ChatTerminal extends Component {
 
     renderMessages = () => {
         return this.state.messages.map((message, index) => {
-            const { from, text, createdAt } = message;
-            return (
-                <div key={index}>
-                    {from == '$' ? text : 
-                    `${from}: ${text} (${dateParser.timeSince(createdAt)})` }
-                </div>
-            )
+            if (message.text) {
+                const { from, text, createdAt } = message;
+                return (
+                    <div key={index}>
+                        {from == '$' ? text : 
+                        `${from}: ${text} (${dateParser.timeSince(createdAt)})` }
+                    </div>
+                )
+            }
+            if (message.url) {
+                const { from, user, url, createdAt } = message;
+                return (
+                    <div key={index}>
+                        {from}: {user} shared their <a href={url} target="_blank">location</a> ({dateParser.timeSince(createdAt)})
+                    </div>
+                )
+            }
         })
     }
 

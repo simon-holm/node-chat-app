@@ -8,7 +8,7 @@ import ChatTerminal from '../components/ChatTerminal';
 import MacBar from '../components/MacBar';
 import DesktopIcon from '../components/DesktopIcon';
 
-import { newMessage } from '../api/api';
+import { newMessage, newLocationMessage, botBroadcastLocation } from '../api/api';
 import { openCloseChatHelper } from '../helpers/chat';
 
 // Icons imported for webpack
@@ -39,13 +39,14 @@ class App extends Component {
     constructor(props) {
         super(props);
         newMessage((message) => this.updateChatSession(message));
+        newLocationMessage((message) => this.updateChatSession(message));
     }
     
     updateChatSession = (message) => {
         let newSessions = [...this.state.sessions];
         newSessions.map(session => {
             if (session.chatName === message.chatName) {
-                session.messages.push({ from: message.from, text: message.text, createdAt: message.createdAt })
+                session.messages.push(message) //{ from: message.from, text: message.text, createdAt: message.createdAt }
             }
         })
         this.setState({ sessions: newSessions })
@@ -56,6 +57,18 @@ class App extends Component {
     }
 
     updateUserName = username => this.setState({ username })
+
+    broadcastUserLocation = (chatName, username) => {
+        if (!navigator.geolocation) {
+            return console.log('Geolocation not supported by your browser')
+        }
+
+        navigator.geolocation.getCurrentPosition(pos => {
+            botBroadcastLocation(chatName, username, pos)
+        }, () => {
+            console.log('Unable to fetch location')
+        })
+    }
 
 	render() {
         const { sessions } = this.state;
@@ -78,6 +91,7 @@ class App extends Component {
                                                     username={this.state.username} chatName={session.chatName} 
                                                     messages={session.messages} isOpen={currentChat[0].isOpen}
                                                     close={() => this.openCloseChat(currentChat)}
+                                                    userLocation={this.broadcastUserLocation}
                                                 />
                                                 <DesktopIcon callBack={() => this.openCloseChat(currentChat)} 
                                                     icon={TerminalIcon} title={session.chatName}
