@@ -22,14 +22,21 @@ io.on('connection', (socket) => {
     console.log(`New user connected! Nr of current users: ${nrOfCurrentUsers}`)
 
     // user join socket.emit from Admin 'Welcome to the chat app'
-    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat!'));
+    socket.emit('newMessage', generateMessage('#Epic Chat', 'Bot', 'Welcome to the chat!'));
 
     // socket.broadcast.emit from Adming text = New user joined.
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined the chat'));
+    socket.broadcast.emit('newMessage', generateMessage('#Epic Chat', 'Bot', 'New user joined the chat'));
 
     socket.on('createMessage', ({ chatName, from, text }, callback) => {
         console.log('createMessage', {chatName, from, text})
-        io.emit('newMessage', generateMessage(chatName, from, text));
+        if (text == 'hahaha' || text == 'lol' || text == 'haha') {
+            io.emit('newMessage', generateMessage(chatName, from, text));
+            setTimeout(() => {
+                io.emit('newMessage', generateMessage(chatName, 'Bot', 'Haha!'))
+            }, 1000)
+        } else {
+            io.emit('newMessage', generateMessage(chatName, from, text));
+        }
         callback('- Server received');
     });
 
@@ -38,7 +45,7 @@ io.on('connection', (socket) => {
         console.log(`User disconnected! Nr of current users: ${nrOfCurrentUsers}`);
 
         // notify other users on leave
-        io.emit('newMessage', generateMessage('Admin', 'User left the chat'));
+        io.emit('newMessage', generateMessage('#Epic Chat', 'Bot', 'User left the chat'));
     });
 });
 

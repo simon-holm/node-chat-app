@@ -11,7 +11,6 @@ socket.on('disconnect', function () {
 
 function newMessage(cb) {
     socket.on('newMessage', function(message) {
-        console.log('newMessage received', message);
         cb(message);
     })
 }
@@ -25,12 +24,5 @@ function sendMessage({ chatName, from, text }, cb) {
         console.log('Message SENT', message)
     });
 }
-
-socket.emit('createMessage', {
-    from: 'Frankie',
-    text: 'Hello this is Frankie'
-}, (data) => {
-    console.log('Message Sent', data)
-});
 
 export { newMessage, sendMessage };

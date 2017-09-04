@@ -24,7 +24,7 @@ class App extends Component {
                 chatName: '#Epic Chat',
                 messages: [
                     {
-                        from: 'Admin',
+                        from: '$',
                         text: 'Chat initialized',
                         createdAt: new Date().getTime()
                     }
