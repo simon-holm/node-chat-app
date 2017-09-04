@@ -28,7 +28,8 @@ class App extends Component {
                         text: 'Chat initialized',
                         createdAt: new Date().getTime()
                     }
-                ]
+                ],
+                isOpen: false
             }
         ],
         username: 'Anonymous' 
@@ -49,6 +50,26 @@ class App extends Component {
         this.setState({ sessions: newSessions })
     }
 
+    openCloseChat = currentChat => {
+        if (currentChat[0].isOpen == true) {
+            let newSessions = [...this.state.sessions];
+            newSessions.map(session => {
+                if (session.chatName === currentChat[0].chatName) {
+                    session.isOpen = false
+                    this.setState({ sessions: newSessions })
+                }
+            })
+        } else if (currentChat[0].isOpen == false) {
+            let newSessions = [...this.state.sessions];
+            newSessions.map(session => {
+                if (session.chatName === currentChat[0].chatName) {
+                    session.isOpen = true
+                    this.setState({ sessions: newSessions })
+                }
+            })
+        }
+    }
+
     updateUserName = username => this.setState({ username })
 
 	render() {
@@ -65,16 +86,17 @@ class App extends Component {
                                 <div>
                                     <StartComponent />
                                     {sessions.map((session, index) => {
+                                        const currentChat = this.state.sessions.filter(s => s.chatName === session.chatName);
                                         return (
                                             <div key={index + 'chat'}>
                                                 <ChatTerminal 
                                                     username={this.state.username} chatName={session.chatName} 
-                                                    messages={session.messages}
+                                                    messages={session.messages} isOpen={currentChat[0].isOpen}
+                                                    close={() => this.openCloseChat(currentChat)}
                                                 />
-                                                <DesktopIcon callBack={() => alert('clicked Chat Terminal')} 
+                                                <DesktopIcon callBack={() => this.openCloseChat(currentChat)} 
                                                     icon={TerminalIcon}
                                                     title={session.chatName}
-                                                    isRoot={false}
                                                 />
                                             </div>
                                         )
@@ -83,7 +105,6 @@ class App extends Component {
                                         callBack={() => alert('this.props.callBack Doubleclick!')}
                                         icon={MacHd}
                                         title={'C: HDD'}
-                                        isRoot={false}
                                     />
                                 </div>
                             )}

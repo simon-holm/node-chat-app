@@ -30,7 +30,7 @@ class MacBar extends Component {
 }
 
 MacBar.PropTypes = {
-
+ icons: PropTypes.array.isRequired
 }
 
 export default MacBar;

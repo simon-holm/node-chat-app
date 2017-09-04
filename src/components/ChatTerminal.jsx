@@ -110,12 +110,12 @@ class ChatTerminal extends Component {
         const { chatName } = this.props;
         return (
             <Draggable handle="strong" {...dragHandlers} defaultPosition={{x: randomPosition(45, 800) , y: randomPosition(25, 200)}}>
-                <div className="chat-terminal-component">
+                <div className="chat-terminal-component" style={this.props.isOpen ? '': {display: 'none'}}>
                     <strong>
                         <div className="terminal-top-bar">
                             <div className="controls-group">
                                 <div className="left-group">
-                                    <a className="delete"></a>
+                                    <a onClick={this.props.close} className="delete"></a>
                                 </div>
                                 <div className="center-group">
                                     <span className="icon">
