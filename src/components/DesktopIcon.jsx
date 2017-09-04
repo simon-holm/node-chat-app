@@ -58,7 +58,7 @@ class DesktopIcon extends Component {
             onStop: this.onStop
         };
         return (
-            <Draggable handle=".handle" {...dragHandlers} defaultPosition={{x: randomPosition(10, 1500) , y: randomPosition(0, 10)}}> 
+            <Draggable handle=".handle" {...dragHandlers} defaultPosition={this.props.position ? this.props.position : {x: randomPosition(10, 1500) , y: randomPosition(0, 10)}}> 
                 <div className="desktop-icon-component">
                     <div className="handle" onClick={this.onIconClick}>
                         <img src={this.props.icon} />

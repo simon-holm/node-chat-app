@@ -9,6 +9,7 @@ import MacBar from '../components/MacBar';
 import DesktopIcon from '../components/DesktopIcon';
 
 import { newMessage } from '../api/api';
+import { openCloseChatHelper } from '../helpers/chat';
 
 // Icons imported for webpack
 import MacHd from '../assets/icons/mac-hd.png';
@@ -50,24 +51,8 @@ class App extends Component {
         this.setState({ sessions: newSessions })
     }
 
-    openCloseChat = currentChat => {
-        if (currentChat[0].isOpen == true) {
-            let newSessions = [...this.state.sessions];
-            newSessions.map(session => {
-                if (session.chatName === currentChat[0].chatName) {
-                    session.isOpen = false
-                    this.setState({ sessions: newSessions })
-                }
-            })
-        } else if (currentChat[0].isOpen == false) {
-            let newSessions = [...this.state.sessions];
-            newSessions.map(session => {
-                if (session.chatName === currentChat[0].chatName) {
-                    session.isOpen = true
-                    this.setState({ sessions: newSessions })
-                }
-            })
-        }
+    openCloseChat = (currentChat) => {
+        this.setState({ sessions: openCloseChatHelper(currentChat, this.state.sessions) });
     }
 
     updateUserName = username => this.setState({ username })
@@ -95,16 +80,15 @@ class App extends Component {
                                                     close={() => this.openCloseChat(currentChat)}
                                                 />
                                                 <DesktopIcon callBack={() => this.openCloseChat(currentChat)} 
-                                                    icon={TerminalIcon}
-                                                    title={session.chatName}
+                                                    icon={TerminalIcon} title={session.chatName}
+                                                    position={{ x: 10, y: 150}}
                                                 />
                                             </div>
                                         )
                                     })}
                                     <DesktopIcon 
                                         callBack={() => alert('this.props.callBack Doubleclick!')}
-                                        icon={MacHd}
-                                        title={'C: HDD'}
+                                        icon={MacHd} title={'C: HDD'} position={{ x: window.innerWidth - 120, y: -80}}
                                     />
                                 </div>
                             )}
