@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Icons imported for webpack
-import Spotify from '../assets/icons/spotify.png';
-import Finder from '../assets/icons/finder.png';
-import Chrome from '../assets/icons/chrome.png';
 import Trash from '../assets/icons/trash.png';
 
 class MacBar extends Component {
@@ -13,15 +10,13 @@ class MacBar extends Component {
             <div className="mac-bar-component">
                 <div className="bar-flex-group">
                     <div className="left-group">
-                        <span>
-                            <img src={Finder} />
-                        </span>
-                        <span>
-                            <img src={Chrome} />
-                        </span>
-                        <span>
-                            <img src={Spotify} />
-                        </span>
+                        {this.props.icons.map(icon => {
+                            return (
+                                <span key={icon.name}>
+                                    <img src={icon.icon} onClick={icon.callBack}/>
+                                </span>
+                            )
+                        })}
                     </div>
                     <div className="right-group">
                         <span>

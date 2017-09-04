@@ -13,6 +13,9 @@ import { newMessage } from '../api/api';
 // Icons imported for webpack
 import MacHd from '../assets/icons/mac-hd.png';
 import TerminalIcon from '../assets/icons/terminal-icon.png';
+import Spotify from '../assets/icons/spotify.png';
+import Finder from '../assets/icons/finder.png';
+import Chrome from '../assets/icons/chrome.png';
 
 class App extends Component {
     state = { 
@@ -61,14 +64,14 @@ class App extends Component {
                             render={() => (
                                 <div>
                                     <StartComponent />
-                                    {sessions.map(session => {
+                                    {sessions.map((session, index) => {
                                         return (
-                                            <div>
-                                                <ChatTerminal key={`${session.chatName}-window`} 
+                                            <div key={index + 'chat'}>
+                                                <ChatTerminal 
                                                     username={this.state.username} chatName={session.chatName} 
                                                     messages={session.messages}
                                                 />
-                                                <DesktopIcon key={`${session.chatName}-icon`} callBack={() => alert('clicked Chat Terminal')} 
+                                                <DesktopIcon callBack={() => alert('clicked Chat Terminal')} 
                                                     icon={TerminalIcon}
                                                     title={session.chatName}
                                                     isRoot={false}
@@ -76,6 +79,12 @@ class App extends Component {
                                             </div>
                                         )
                                     })}
+                                    <DesktopIcon 
+                                        callBack={() => alert('this.props.callBack Doubleclick!')}
+                                        icon={MacHd}
+                                        title={'C: HDD'}
+                                        isRoot={false}
+                                    />
                                 </div>
                             )}
                         />
@@ -88,13 +97,24 @@ class App extends Component {
                         />
                     </Switch>
                 </div>
-                <DesktopIcon 
-                        callBack={() => alert('this.props.callBack Doubleclick!')}
-                        icon={MacHd}
-                        title={'C: HDD'}
-                        isRoot={true}
-                    />
-                <MacBar />
+                
+                <MacBar icons={[
+                    {
+                        name: 'Finder',
+                        icon: Finder,
+                        callBack: () => alert('Finder clicked')
+                    },
+                    {
+                        name: 'Chrome',
+                        icon: Chrome,
+                        callBack: () => alert('Chrome clicked')
+                    },
+                    {
+                        name: 'Spotify',
+                        icon: Spotify,
+                        callBack: () => alert('Spotify clicked')
+                    }
+                ]} />
 			</div>
 		);
 	}
