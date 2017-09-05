@@ -8,7 +8,7 @@ import ChatTerminal from '../components/ChatTerminal';
 import MacBar from '../components/MacBar';
 import DesktopIcon from '../components/DesktopIcon';
 
-import { newMessage, newLocationMessage, botBroadcastLocation } from '../api/api';
+import { sendMessage, newMessage, newLocationMessage, botBroadcastLocation } from '../api/api';
 import { openCloseChatHelper } from '../helpers/chat';
 
 // Icons imported for webpack
@@ -18,28 +18,36 @@ import Spotify from '../assets/icons/spotify.png';
 import Finder from '../assets/icons/finder.png';
 import Chrome from '../assets/icons/chrome.png';
 
+const APP_DATA = JSON.parse(localStorage.getItem("__INITIAL_STATE__"));
+
+const INITIAL_STATE = { 
+    sessions: [
+        {
+            chatName: '#Epic Chat',
+            messages: [
+                {
+                    from: '$',
+                    text: 'Chat initialized',
+                    createdAt: new Date().getTime()
+                }
+            ],
+            isOpen: false
+        }
+    ],
+    username: 'Anonymous' 
+}
+
 class App extends Component {
-    state = { 
-        sessions: [
-            {
-                chatName: '#Epic Chat',
-                messages: [
-                    {
-                        from: '$',
-                        text: 'Chat initialized',
-                        createdAt: new Date().getTime()
-                    }
-                ],
-                isOpen: false
-            }
-        ],
-        username: 'Anonymous' 
-    }
+    state = APP_DATA || INITIAL_STATE;
 
     constructor(props) {
         super(props);
         newMessage((message) => this.updateChatSession(message));
         newLocationMessage((message) => this.updateChatSession(message));
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem("__INITIAL_STATE__", JSON.stringify(this.state));
     }
     
     updateChatSession = (message) => {
@@ -56,7 +64,11 @@ class App extends Component {
         this.setState({ sessions: openCloseChatHelper(currentChat, this.state.sessions) });
     }
 
-    updateUserName = username => this.setState({ username })
+    updateUserName = username => {
+        const oldUsername = this.state.username;
+        this.setState({ username })
+        sendMessage({ chatName: '#Epic Chat', from: 'Bot', text: `${oldUsername} changed their name to ${username}` }, () => console.log('sent'))
+    }
 
     broadcastUserLocation = (chatName, username) => {
         if (!navigator.geolocation) {
@@ -74,7 +86,7 @@ class App extends Component {
         const { sessions } = this.state;
 		return (
 			<div>
-                <Navbar/>
+                <Navbar username={this.state.username} updateUserName={this.updateUserName}/>
 				<div className="center-align app-background" style={{ minHeight: 'calc(100vh - 30px)'}}>
                     <Switch>
                         <Route

@@ -3,7 +3,18 @@ import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     state = { menuActive: false }
+
+    userNameUpdate = (e) => {
+        e.preventDefault();
+        if (this.props.username.trim() === this.state.username.trim() || !this.state.username || this.state.username == '') {
+            console.log('Names are identical');
+        } else {
+            this.props.updateUserName(this.state.username.trim())
+        }
+    }
+
     render() {
+        const { username } = this.props;
         return (
             <nav className="navbar">
                 <div className="navbar-brand">
@@ -90,7 +101,24 @@ class Navbar extends Component {
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-item" href="#">Settings</a>
                             <div className="navbar-dropdown">
-                                <a className="navbar-item" href="#">Set Username</a>
+                                <div className="navbar-item">
+                                    <div>
+                                        <p className="is-size-6-desktop">
+                                            <strong className="has-text-info">Username</strong>
+                                        </p>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '300px', alignItems: 'center'}}>
+                                            <form style={{ width: '100%', height: '36px', paddingRight: '5px'}}
+                                                onSubmit={this.userNameUpdate}
+                                            >
+                                                <input style={{ width: '100%', height: '36px'}} placeholder={this.props.username} maxLength="10" 
+                                                    onChange={(e) => this.setState({ username: e.target.value })}
+                                                />
+                                            </form>
+                                            <a className="button" onClick={this.userNameUpdate}>Set</a>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
