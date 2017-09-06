@@ -3,29 +3,27 @@
 @import '../variables';
 
 .navbar {
-    background-color: #eee0e5;
+  background-color: #eee0e5;
+  min-height: $navbar-height;
+  max-height: $navbar-height;
+
+  .navbar-brand {
+    height: $navbar-height;
     min-height: $navbar-height;
-    max-height: $navbar-height;
-
-    .navbar-brand {
-        height: $navbar-height;
-        min-height: $navbar-height;
-        .navbar-item {
-
-            &:hover {
-                background-color: #eee0e5;
-            }
-        }
-        .navbar-burger {
-            height: $navbar-height;
-        }
+    .navbar-item {
+      &:hover {
+        background-color: #eee0e5;
+      }
     }
-    .navbar-menu {
-
-        .navbar-item {
-            &:hover {
-                background-color: #eee0e5;
-            }
-        }
+    .navbar-burger {
+      height: $navbar-height;
     }
+  }
+  .navbar-menu {
+    .navbar-item {
+      &:hover {
+        background-color: #eee0e5;
+      }
+    }
+  }
 }

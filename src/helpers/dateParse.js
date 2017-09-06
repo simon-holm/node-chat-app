@@ -1,5 +1,5 @@
 //import 'moment/locale/sv';
-import moment from 'moment';
+import moment from 'moment'
 /*
     Date Parse Options
     - 'simple'          e.g '2017-07-18'
@@ -15,57 +15,57 @@ import moment from 'moment';
 */
 
 const dateParser = {
-    dayAndMonth(date) {
-        moment.locale('sv');
-        return moment(date).format('dddd Do MMMM');
-    },
+  dayAndMonth(date) {
+    moment.locale('sv')
+    return moment(date).format('dddd Do MMMM')
+  },
 
-    dayAndMonthAndTimeFull(date) {
-        moment.locale('sv');
-        return moment(date).format('dddd Do MMMM HH:mm');
-    },
+  dayAndMonthAndTimeFull(date) {
+    moment.locale('sv')
+    return moment(date).format('dddd Do MMMM HH:mm')
+  },
 
-    dayAndTime(date) {
-        moment.locale('sv');
-        return moment(date).format('dddd Do HH:mm');
-    },
+  dayAndTime(date) {
+    moment.locale('sv')
+    return moment(date).format('dddd Do HH:mm')
+  },
 
-    simple(date) {
-        moment.locale('sv');
-        return moment(date).format('L')
-    },
+  simple(date) {
+    moment.locale('sv')
+    return moment(date).format('L')
+  },
 
-    time(date) {
-        moment.locale('sv');
-        return moment(date).format('L LT');
-    },
+  time(date) {
+    moment.locale('sv')
+    return moment(date).format('L LT')
+  },
 
-    timeOnly(date) {
-        moment.locale('sv');
-        return moment(date).format('HH');
-    },
+  timeOnly(date) {
+    moment.locale('sv')
+    return moment(date).format('HH')
+  },
 
-    full(date) {
-        moment.locale('sv');
-        return moment(date).format('LLLL');
-    },
+  full(date) {
+    moment.locale('sv')
+    return moment(date).format('LLLL')
+  },
 
-    timeSince(date) {
-        //moment.locale('sv');
-        return moment(date)
-            .startOf('second')
-            .fromNow();
-    },
+  timeSince(date) {
+    //moment.locale('sv');
+    return moment(date)
+      .startOf('second')
+      .fromNow()
+  },
 
-    custom(date, pattern) {
-        moment.locale('sv');
-        return moment(date).format(pattern);
-    },
+  custom(date, pattern) {
+    moment.locale('sv')
+    return moment(date).format(pattern)
+  },
 
-    notify(date) {
-        moment.locale('sv');
-        return moment(date).format('dddd Do HH:mm');
-    }
+  notify(date) {
+    moment.locale('sv')
+    return moment(date).format('dddd Do HH:mm')
+  }
 }
 
-export {dateParser}
+export { dateParser }

@@ -1,56 +1,53 @@
-
-
 .mac-bar-component {
-    position: absolute;
-    top: calc(100vh - 30px);
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: 0;
-    width: 900px;
-    height: 30px;
-    background-color: rgba(37, 43, 41, 0.90);
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    padding-left: 15px;
-    padding-right: 15px;
-    .bar-flex-group {
-        display: flex;
-        position: relative;
-        justify-content: space-between;
-        height: 67px;
-        bottom: 37px;
+  position: absolute;
+  top: calc(100vh - 30px);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 0;
+  width: 900px;
+  height: 30px;
+  background-color: rgba(37, 43, 41, 0.9);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  .bar-flex-group {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    height: 67px;
+    bottom: 37px;
 
-        span {
-            transition: all 200ms;
-            &:hover {
-                transform: scale(1.05);
-                margin-bottom: 10px;
-            }
-        }
-
-        img {
-            height: 70px;
-            width: auto;
-            margin-bottom: 25px;
-            user-drag: none; 
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-drag: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .left-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .right-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
+    span {
+      transition: all 200ms;
+      &:hover {
+        transform: scale(1.05);
+        margin-bottom: 10px;
+      }
     }
+
+    img {
+      height: 70px;
+      width: auto;
+      margin-bottom: 25px;
+      user-drag: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .left-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .right-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
